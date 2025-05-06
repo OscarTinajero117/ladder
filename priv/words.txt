@@ -121,6 +121,7 @@ cart
 case
 cash
 cast
+cats
 cave
 cede
 cere
@@ -562,6 +563,7 @@ make
 mark
 mask
 mate
+mats
 maul
 meet
 meld
@@ -569,12 +571,15 @@ melt
 mend
 meow
 mess
+mice
 miff
 milk
 mime
 mind
 mine
 miss
+mite
+mits
 moan
 mock
 moor
