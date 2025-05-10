@@ -5,7 +5,7 @@ defmodule Ladder.Errors do
 
   alias Ladder.Words
 
-  def validate(word, previous) do
+  defp list(word, previous) do
     []
     |> maybe_add_error(Words.member?(word), "The word (#{word}) not in dictionary.")
     |> maybe_add_error(Words.correct_length?(word), "The word (#{word}) must be 4 letters long.")
@@ -13,20 +13,16 @@ defmodule Ladder.Errors do
       Words.exactly_one_change?(word, previous),
       "The word (#{word}) to previous (#{previous}) does not have exactly one change."
     )
+  end
 
-    # cond do
-    #   !Words.correct_length?(word) ->
-    #     {:error, "The word (#{word}) must be 4 letters long."}
+  def validate(word, previous) do
+    case list(word, previous) do
+      [] ->
+        {:ok, word}
 
-    #   !Words.member?(word) ->
-    #     {:error, "The word (#{word}) not in dictionary."}
-
-    #   !Words.exactly_one_change?(word, previous) ->
-    #     {:error, "The word (#{word}) to previous (#{previous}) does not have exactly one change."}
-
-    #   true ->
-    #     {:ok, word}
-    # end
+      errors ->
+        {:error, errors}
+    end
   end
 
   defp maybe_add_error(list, false, error), do: [error | list]
