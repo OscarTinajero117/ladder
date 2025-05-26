@@ -41,7 +41,7 @@ defmodule Ladder.Server do
         |> reply_or_finish()
 
       {:error, error} ->
-        {:reply, {:ok, Enum.join(error, "\n")}, board}
+        {:reply, {:ok, Enum.join([Board.show(board) | error], "\n")}, board}
     end
   end
 
